@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Senhas</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #eef; }
+    #app { margin: 50px auto; width: 400px; padding: 20px; background: #fff; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Gerador de Senhas</h2>
+    <label>Tamanho: <input type="number" id="length" value="12" min="4" max="32"></label><br><br>
+    <button onclick="generatePassword()">Gerar</button>
+    <p><input type="text" id="result" readonly style="width: 100%;"></p>
+    <button onclick="copyPassword()">Copiar</button>
+  </div>
+  <script>
+    function generatePassword(){
+      const length = document.getElementById("length").value;
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+      let password = "";
+      for(let i=0; i<length; i++){
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById("result").value = password;
+    }
+    function copyPassword(){
+      const result = document.getElementById("result");
+      result.select();
+      document.execCommand("copy");
+      alert("Senha copiada!");
+    }
+  </script>
+</body>
+</html>
